@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Recipe } from '../models/recipe.model';
 import { Ingredient } from '../models/ingredient.model';
+import { ShoppingListService } from './shopping-list.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class RecipeService {
       [
         new Ingredient('Salt', 1),
         new Ingredient('Tommato', 3),
-        new Ingredient('Bosiljak', 4),
+        new Ingredient('Bosiljak', 4), 
       ])
   ];
 
@@ -30,5 +31,9 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  constructor() { }
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.shoppingListService.addIngredients(ingredients);
+  }
+
+  constructor(private shoppingListService: ShoppingListService) { }
 }

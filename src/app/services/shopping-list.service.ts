@@ -22,5 +22,11 @@ export class ShoppingListService {
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
 
+  addIngredients(ingredients: Ingredient[]) {
+    //...pretvara array u listu kako bi mogli da dodamo sve elemente array-a
+    this.ingredients.push(...ingredients);
+    this.ingredientsChanged.emit(ingredients.slice());
+  }
+
   constructor() { }
 }
